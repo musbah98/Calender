@@ -11,7 +11,6 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var lbl: UILabel!
-    
     @IBOutlet weak var gregorianTF: UITextField!
     
     private var datePicker: UIDatePicker?
@@ -29,14 +28,14 @@ class ViewController: UIViewController {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ViewController.viewTaped(gestureRecognizer:)))
         view.addGestureRecognizer(tapGesture)
-        
         gregorianTF.inputView = datePicker
-        
     }
 
     @objc func viewTaped(gestureRecognizer:UITapGestureRecognizer)  {
         view.endEditing(true)
     }
+    
+    
     func getDateTime() -> String{
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/YYYY"
@@ -45,8 +44,9 @@ class ViewController: UIViewController {
     
     @IBAction func ConvertTime(_ sender: Any) {
         lbl.text! = toIslamic()
-        
     }
+    
+    
     func toIslamic() -> String {
         if gregorianTF.text!.isEmpty {return "Enter valid date"}
         let text = gregorianTF.text!
